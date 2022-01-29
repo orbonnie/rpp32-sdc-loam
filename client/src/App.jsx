@@ -8,7 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProduct: 59553
+      currentProduct: 64620
     }
     this.apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
     this.trackClicks = this.trackClicks.bind(this);
@@ -21,20 +21,20 @@ class App extends React.Component {
     var element = event.target;
 
     axios.post(this.apiUrl + '/interactions',
-    {
-      element: element.className,
-      widget: widgetName,
-      time: timeClicked.toString()
-    },
-    {
-      headers: {
-        'Authorization': process.env.API_KEY,
-      }
-    }).then(() => {
-      console.log('Successfully tracked click');
-    }).catch((error) => {
-      console.log('Error posting to interactions API: ' + error);
-    });
+      {
+        element: element.className,
+        widget: widgetName,
+        time: timeClicked.toString()
+      },
+      {
+        headers: {
+          'Authorization': process.env.API_KEY,
+        }
+      }).then(() => {
+        console.log('Successfully tracked click');
+      }).catch((error) => {
+        console.log('Error posting to interactions API: ' + error);
+      });
   }
 
   render() {
