@@ -6,14 +6,15 @@ class AnswersList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      answers: []
+      answers: [],
+      server: 'http://10.0.0.65:5000'
     }
   }
 
   //method to get answers list for particular questions id passed through props
   componentDidMount() {
     //make call to api for list using question id
-    axios.get(this.props.apiUrl + '/qa/questions/' + this.props.id + '/answers', {
+    axios.get(this.state.server + '/qa/questions/' + this.props.id + '/answers', {
       headers: {
         'Authorization': this.props.token
       },
@@ -67,7 +68,7 @@ class AnswersList extends React.Component {
   }
 
   answerYesLinkPut(id) {
-    axios.put(this.props.apiUrl + '/qa/answers/' + id + '/helpful', {
+    axios.put(this.state.server + '/qa/answers/' + id + '/helpful', {
       headers: {
         'Authorization': this.props.token
       },
@@ -82,7 +83,7 @@ class AnswersList extends React.Component {
   }
 
   reportAnswerPut(id) {
-    axios.put(this.props.apiUrl + '/qa/answers/' + id + '/report', {
+    axios.put(this.state.server + '/qa/answers/' + id + '/report', {
       headers: {
         'Authorization': this.props.token
       },

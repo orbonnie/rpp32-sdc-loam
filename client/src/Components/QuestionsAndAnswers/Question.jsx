@@ -9,7 +9,7 @@ class Question extends React.Component {
   }
 
   QuestionYesLinkPost() {
-    axios.put(this.props.apiUrl + '/qa/questions/' + this.props.question.question_id + '/helpful', {
+    axios.put('http://10.0.0.65:5000/qa/questions/' + this.props.question.question_id + '/helpful', {
       headers: {
         'Authorization': this.props.token
       },

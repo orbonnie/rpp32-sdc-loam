@@ -15,14 +15,15 @@ class QandA extends React.Component {
       productName: '',
       questionBody: '',
       question_id: '',
-      uploadedPhotos: []
+      uploadedPhotos: [],
+      server: 'http://10.0.0.65:5000'
     }
   }
 
   //method to retrieve data from api on render
   componentDidMount() {
     //make call to api
-    axios.get(this.props.apiUrl + '/qa/questions', {
+    axios.get(this.state.server + '/qa/questions', {
       headers: {
         'Authorization': this.props.token
       },
@@ -128,7 +129,7 @@ class QandA extends React.Component {
               if (warningMessage.length > 30) {
                 alert(warningMessage);
               } else {
-                axios.post(this.props.apiUrl + '/qa/questions',
+                axios.post(this.state.server + '/qa/questions',
                   {
                     body: event.target[0].value,
                     name: event.target[1].value,
@@ -198,7 +199,7 @@ class QandA extends React.Component {
                 this.state.uploadedPhotos.map((photo) => {
                   photoURLs.push(photo.name);
                 })
-                axios.post(this.props.apiUrl + '/qa/questions/' + this.state.question_id + '/answers',
+                axios.post(this.state.server + '/qa/questions/' + this.state.question_id + '/answers',
                   {
                     body: event.target[0].value,
                     name: event.target[1].value,
